@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export type BreathingPhase = 'inhale' | 'exhale' | 'hold';
+export type BreathingPhase =
+  | 'inhale'
+  | 'exhale'
+  | 'holdAfterInhale'
+  | 'holdAfterExhale';
 export type Mode = 'idle' | 'breathing' | 'finished';
 
 export const useEvenBreath = ({
