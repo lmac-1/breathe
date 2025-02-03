@@ -1,25 +1,26 @@
 'use client';
-import { Button } from '../ui/Button';
 import { useEvenBreath } from '@/hooks/useEvenBreath';
-import { BreathingAnimation } from '../BreathingAnimation';
+import { Button } from '@/components/ui/Button';
+import { BreathingAnimation } from '@/components/BreathingAnimation';
 
-export function ResonantBreathing() {
-  const breathDurationMs = 5500;
+export const EvenBreathing = () => {
+  const breathDurationMs = 6000;
   const { mode, handleStart, totalCycles, cycleCount, breathingPhase } =
-    useEvenBreath({ breathDurationMs, totalMinutes: 1 });
+    useEvenBreath({ breathDurationMs, totalMinutes: 5 });
 
-  if (mode === 'idle')
+  if (mode === 'idle') {
     return (
       <div>
         <p>
-          breathe at 5.5 breaths per minute to chill out, reset your mind, and
-          find your focus.
+          inhaling and exhaling for the same duration can help calm your nervous
+          system and reduce anxious thoughts and stress held in the body.
         </p>
         <Button className="mt-3" onClick={handleStart}>
-          i&apos;m ready
+          let&apos;s go
         </Button>
       </div>
     );
+  }
 
   if (mode === 'finished') return 'finished! how do you feel?';
   return (
@@ -35,4 +36,4 @@ export function ResonantBreathing() {
       />
     </div>
   );
-}
+};
