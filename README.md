@@ -12,10 +12,10 @@ This is a simple application to practice breahwork exercises
     - [ ] says inhale for 4 seconds, hold 4 seconds, exhale 4 seconds, hold 4 seconds
     - [ ] shows finished screen
     - [ ] allow for customisable options for duration and length of box (will add in after)
-  - [ ] even breathing:
-    - [ ] start button to start 5 minute timer
-    - [ ] says inhale 5, exhale 5 (no pause)
-    - [ ] shows finished screen
+  - [x] even breathing:
+    - [x] start button to start 5 minute timer
+    - [x] says inhale 5, exhale 5 (no pause)
+    - [x] shows finished screen
     - [ ] allow for customisable options for duration and length of breath (will add in after)
   - [x] resonant breathing:
     - [x] start button to start 1 minute timer (will be 5 minutes later)
