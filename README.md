@@ -17,11 +17,11 @@ This is a simple application to practice breahwork exercises
     - [ ] says inhale 5, exhale 5 (no pause)
     - [ ] shows finished screen
     - [ ] allow for customisable options for duration and length of breath (will add in after)
-  - [ ] resonant breathing:
-    - [ ] start button to start 5 minute timer
-    - [ ] says inhale 5.5 seconds, exhale 5.5 seconds
-    - [ ] shows finished screen
-    - [ ] no customisable options
+  - [x] resonant breathing:
+    - [x] start button to start 1 minute timer (will be 5 minutes later)
+    - [x] says inhale 5.5 seconds, exhale 5.5 seconds
+    - [x] shows finished screen
+    - [x] no customisable options
   - [ ] 4-7-8
     - [ ] start button to start exercise
     - [ ] inhale 4 seconds, hold 7 seconds, exhale 8 seconds. 5 cycles.
