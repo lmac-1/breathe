@@ -35,7 +35,7 @@ export const Button = ({
       href={href}
       onClick={onClick}
       className={cn(
-        'bg-blue-200 text-gray-700 px-4 py-2 rounded-md',
+        'bg-blue-200 text-blue-900 px-4 py-2 rounded-md',
         className
       )}
       disabled={disabled}
