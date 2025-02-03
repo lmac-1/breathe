@@ -4,8 +4,8 @@ This is a simple application to practice breahwork exercises
 
 ## Todo
 
-- [ ] build first page with buttons for different breathing exercises
-- [ ] each button takes user to a breathwork page
+- [x] build first page with buttons for different breathing exercises
+- [x] each button takes user to a breathwork page
 - [ ] build basic pages
   - [ ] box breath:
     - [ ] start button to start 5 minute timer
