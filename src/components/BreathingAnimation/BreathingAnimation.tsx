@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { BreathingPhase, Mode } from '@/hooks/useEvenBreath';
 import { cn } from '@/utils';
+import { ExerciseState } from '@/types';
 
 export const BreathingAnimation = ({
   breathCycleTime,
@@ -9,8 +9,8 @@ export const BreathingAnimation = ({
   mode,
 }: {
   breathCycleTime: number;
-  breathingPhase: BreathingPhase;
-  mode: Mode;
+  breathingPhase: string;
+  mode: ExerciseState;
 }) => {
   const [animationScale, setAnimationScale] = useState(0.5);
 
@@ -19,17 +19,6 @@ export const BreathingAnimation = ({
     if (breathingPhase === 'exhale') setAnimationScale(0.5);
     if (breathingPhase === 'inhale') setAnimationScale(1);
   }, [breathingPhase, mode]);
-
-  // Ensure first inhale animates correctly
-  // useEffect(() => {
-  //   if (
-  //     mode === 'breathing' &&
-  //     breathingPhase === 'inhale' &&
-  //     cycleCount === 0
-  //   ) {
-  //     setAnimationScale(1);
-  //   }
-  // }, [mode, breathingPhase, cycleCount]);
 
   return (
     <div

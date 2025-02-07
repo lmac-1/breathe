@@ -67,7 +67,7 @@ export const useBreathing = (config: BreathingConfig) => {
 
   const totalCycles = useMemo(() => {
     if (config.type === 'calm') return CALM_TOTAL_CYCLES;
-    return Math.floor(totalSeconds / lengthOfBreathCycleSeconds);
+    return Math.ceil(totalSeconds / lengthOfBreathCycleSeconds);
   }, [totalSeconds, lengthOfBreathCycleSeconds, config.type]);
 
   const currentPhase = breathingPattern[currentBreathingPatternIndex];

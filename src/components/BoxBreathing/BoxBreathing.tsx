@@ -9,10 +9,7 @@ export const BoxBreathing = () => {
     breathingPhaseDuration,
     start,
     breathingPhase,
-    cycleCount,
-    totalCycles,
     elapsedSeconds,
-    totalSeconds,
   } = useBreathing({
     type: 'box',
     minutes: 1,
@@ -35,11 +32,7 @@ export const BoxBreathing = () => {
 
   return (
     <div className="mt-3">
-      <p className="text-gray-500 text-xs font-mono">
-        cycle {cycleCount + 1} of {totalCycles}
-      </p>
-      <p>total seconds: {totalSeconds}</p>
-      <p>elapsed seconds: {elapsedSeconds}</p>
+      <p className="text-gray-500 text-xs font-mono">{elapsedSeconds}</p>
       <h1 className="text-2xl font-semibold">{breathingPhase}</h1>
       <BreathingAnimation
         breathCycleTime={breathingPhaseDuration}

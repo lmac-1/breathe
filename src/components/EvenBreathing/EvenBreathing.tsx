@@ -8,8 +8,6 @@ export const EvenBreathing = () => {
   const {
     exerciseState,
     start,
-    totalCycles,
-    cycleCount,
     breathingPhase,
     breathingPhaseDuration,
     elapsedSeconds,
@@ -32,10 +30,7 @@ export const EvenBreathing = () => {
   if (exerciseState === 'finished') return 'finished! how do you feel?';
   return (
     <div className="mt-3">
-      <p className="text-gray-500 text-xs font-mono">
-        cycle {cycleCount + 1} of {totalCycles}
-      </p>
-      <p>elapsed seconds: {elapsedSeconds}</p>
+      <p className="text-gray-500 text-xs font-mono">{elapsedSeconds}</p>
       <h1 className="text-2xl font-semibold">{breathingPhase}</h1>
       <BreathingAnimation
         breathCycleTime={breathingPhaseDuration}

@@ -38,8 +38,7 @@ type BreathingPhase =
   | 'inhale'
   | 'exhale'
   | 'holdAfterInhale'
-  | 'holdAfterExhale'
-  | 'remainder';
+  | 'holdAfterExhale';
 export type ExerciseState = 'idle' | 'breathing' | 'paused' | 'finished';
 
 export type PhaseConfig = {
