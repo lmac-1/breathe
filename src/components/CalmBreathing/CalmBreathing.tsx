@@ -1,35 +1,30 @@
 'use client';
-
-import { Button } from '@/components/ui/Button';
-import { BreathingAnimation } from '@/components/BreathingAnimation';
+import { Button } from '../ui/Button';
+import { BreathingAnimation } from '../BreathingAnimation';
 import { useBreathing } from '@/hooks/useBreathing';
 
-export const EvenBreathing = () => {
+export const CalmBreathing = () => {
   const {
     exerciseState,
-    start,
-    totalCycles,
     cycleCount,
+    totalCycles,
+    start,
     breathingPhase,
     breathingPhaseDuration,
     elapsedSeconds,
-  } = useBreathing({ type: 'even' });
-
+  } = useBreathing({ type: 'calm' });
   if (exerciseState === 'idle') {
     return (
       <div>
-        <p>
-          inhaling and exhaling for the same duration can help calm your nervous
-          system and reduce anxious thoughts and stress held in the body.
-        </p>
+        <p>a special breathing technique aimed to calm you down</p>
         <Button className="mt-3" onClick={start}>
-          let&apos;s go
+          go
         </Button>
       </div>
     );
   }
-
   if (exerciseState === 'finished') return 'finished! how do you feel?';
+
   return (
     <div className="mt-3">
       <p className="text-gray-500 text-xs font-mono">

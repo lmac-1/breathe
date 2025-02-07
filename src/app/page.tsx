@@ -7,9 +7,9 @@ export default function Home() {
         breathe
       </h1>
       <div className="flex gap-4">
-        <Button href="/box">box breathing</Button>
-        <Button href="/even">even breathing</Button>
         <Button href="/resonant">resonant breathing</Button>
+        <Button href="/even">even breathing</Button>
+        <Button href="/box">box breathing</Button>
         <Button href="/478">4-7-8</Button>
       </div>
     </div>

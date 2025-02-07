@@ -3,5 +3,5 @@ export default function BreathingLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="max-w-lg">{children}</div>;
+  return <div className="max-w-sm">{children}</div>;
 }
