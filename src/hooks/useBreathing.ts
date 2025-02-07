@@ -1,5 +1,6 @@
+import { convertSecondsToMinutesSecondDisplay } from '@/helperFunctions';
 import { BreathingConfig, ExerciseState, PhaseConfig } from '@/types';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const DEFAULT_TOTAL_MINUTES = 5;
 const CALM_TOTAL_CYCLES = 5;
@@ -7,6 +8,9 @@ const EVEN_DEFAULT_BREATH_PHASE = 5;
 const BOX_DEFAULT_BREATH_PHASE = 4;
 
 export const useBreathing = (config: BreathingConfig) => {
+  const breathingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const secondsIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const [exerciseState, setExerciseState] = useState<ExerciseState>('idle');
   const [currentBreathingPatternIndex, setCurrentBreathingPatternIndex] =
     useState(0);
@@ -71,7 +75,7 @@ export const useBreathing = (config: BreathingConfig) => {
   useEffect(() => {
     if (exerciseState !== 'breathing') return;
 
-    const phaseTimeout = setInterval(() => {
+    breathingIntervalRef.current = setInterval(() => {
       // we are calculating next index and cycle here so that it works in strict mode
       // these should not be added to dependency array
       const nextIndex =
@@ -84,9 +88,12 @@ export const useBreathing = (config: BreathingConfig) => {
     }, currentPhase.durationMs);
 
     return () => {
-      clearInterval(phaseTimeout);
+      if (breathingIntervalRef.current) {
+        clearInterval(breathingIntervalRef.current);
+        breathingIntervalRef.current = null;
+      }
     };
-  }, [breathingPattern, exerciseState, currentPhase, totalCycles]);
+  }, [exerciseState, currentPhase, breathingPattern.length]);
 
   // handles elapsed seconds
   useEffect(() => {
@@ -96,12 +103,15 @@ export const useBreathing = (config: BreathingConfig) => {
       return;
     }
 
-    const timeInterval = setInterval(() => {
+    secondsIntervalRef.current = setInterval(() => {
       setElapsedSeconds((t) => t + 1);
     }, 1000);
 
     return () => {
-      clearInterval(timeInterval);
+      if (secondsIntervalRef.current) {
+        clearInterval(secondsIntervalRef.current);
+        secondsIntervalRef.current = null;
+      }
     };
   }, [exerciseState, elapsedSeconds, totalSeconds]);
 
@@ -121,7 +131,7 @@ export const useBreathing = (config: BreathingConfig) => {
     totalCycles,
     start,
     breathingPhaseDuration: currentPhase.durationMs,
-    elapsedSeconds,
+    elapsedSeconds: convertSecondsToMinutesSecondDisplay(elapsedSeconds),
     totalSeconds,
   };
 };
