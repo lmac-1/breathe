@@ -23,7 +23,8 @@ export const BreathingAnimation = ({
   return (
     <div
       className={cn(
-        'w-40 mt-4 h-40 rounded-full bg-blue-300 transition-transform'
+        'w-40 mt-4 h-40 rounded-full bg-blue-300 transition-transform',
+        breathingPhase === 'hold' && 'bg-[#A0AEBC]'
       )}
       style={{
         transform:
