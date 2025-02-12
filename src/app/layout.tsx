@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
-//import { Geist, Geist_Mono } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
+import { cn } from '@/utils';
 
-// const geistSans = Geist({
-//   variable: '--font-geist-sans',
-//   subsets: ['latin'],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: '--font-geist-mono',
-//   subsets: ['latin'],
-// });
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'breathe',
@@ -25,8 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        //className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={`pt-10 px-10 antialiased bg-blue-50`}
+        className={cn(`pt-10 px-10 antialiased bg-blue-50`, roboto.className)}
       >
         {children}
       </body>

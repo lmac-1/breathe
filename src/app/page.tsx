@@ -3,9 +3,7 @@ import { Button } from '@/components/ui/Button';
 export default function Home() {
   return (
     <div className="space-y-6">
-      <h1 className="text-9xl font-mono tracking-tighter text-blue-400">
-        breathe
-      </h1>
+      <h1 className="text-9xl text-blue-400">breathe</h1>
       <div className="flex gap-4">
         <Button href="/resonant">resonant breathing</Button>
         <Button href="/even">even breathing</Button>
