@@ -21,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(`pt-10 px-10 antialiased bg-blue-50`, roboto.className)}
+        className={cn(
+          `py-10 px-4 sm:px-10 antialiased bg-[#F5F1E8] sm:max-w-md md:max-w-lg mx-auto`,
+          roboto.className
+        )}
       >
         {children}
       </body>
