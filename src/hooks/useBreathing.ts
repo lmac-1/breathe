@@ -1,6 +1,6 @@
 import { convertSecondsToMinutesSecondDisplay } from '@/helperFunctions';
 import { BreathingConfig, ExerciseState, PhaseConfig } from '@/types';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useMemo, useState } from 'react';
 
 const DEFAULT_TOTAL_MINUTES = 5;
 const CALM_TOTAL_CYCLES = 5;
@@ -8,14 +8,14 @@ const EVEN_DEFAULT_BREATH_PHASE = 5;
 const BOX_DEFAULT_BREATH_PHASE = 4;
 
 export const useBreathing = (config: BreathingConfig) => {
-  const breathingIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const secondsIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
   const [exerciseState, setExerciseState] = useState<ExerciseState>('idle');
   const [currentBreathingPatternIndex, setCurrentBreathingPatternIndex] =
     useState(0);
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  const breathingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const secondsIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const breathingPattern = useMemo((): PhaseConfig[] => {
     switch (config.type) {
@@ -49,14 +49,13 @@ export const useBreathing = (config: BreathingConfig) => {
         ];
       }
     }
-  }, [config.type, config?.lengthOfBreathPhase]);
+  }, [config.type, config.lengthOfBreathPhase]);
 
-  const lengthOfBreathCycleSeconds = useMemo(() => {
-    return breathingPattern.reduce(
-      (sum, phase) => sum + phase.durationMs / 1000,
-      0
-    );
-  }, [breathingPattern]);
+  const lengthOfBreathCycleSeconds = useMemo(
+    () =>
+      breathingPattern.reduce((sum, phase) => sum + phase.durationMs / 1000, 0),
+    [breathingPattern]
+  );
 
   const totalSeconds = useMemo(() => {
     if (config.type === 'calm')
@@ -76,15 +75,15 @@ export const useBreathing = (config: BreathingConfig) => {
     if (exerciseState !== 'breathing') return;
 
     breathingIntervalRef.current = setInterval(() => {
-      // we are calculating next index and cycle here so that it works in strict mode
-      // these should not be added to dependency array
+      // Calculate next values first so that it works correctly on strict mode
       const nextIndex =
         (currentBreathingPatternIndex + 1) % breathingPattern.length;
-      const nextCycle = cycleCount + 1;
-      if (nextIndex === 0) {
-        setCycleCount(nextCycle);
-      }
+
+      // Update states using the calculated values
       setCurrentBreathingPatternIndex(nextIndex);
+      if (nextIndex === 0) {
+        setCycleCount((prevCount) => prevCount + 1);
+      }
     }, currentPhase.durationMs);
 
     return () => {
@@ -93,18 +92,23 @@ export const useBreathing = (config: BreathingConfig) => {
         breathingIntervalRef.current = null;
       }
     };
-  }, [exerciseState, currentPhase, breathingPattern.length]);
+  }, [
+    exerciseState,
+    currentPhase.durationMs,
+    currentBreathingPatternIndex,
+    breathingPattern.length,
+  ]);
 
-  // handles elapsed seconds
   useEffect(() => {
     if (exerciseState !== 'breathing') return;
+
     if (elapsedSeconds >= totalSeconds) {
       setExerciseState('finished');
       return;
     }
 
     secondsIntervalRef.current = setInterval(() => {
-      setElapsedSeconds((t) => t + 1);
+      setElapsedSeconds((prevSeconds) => prevSeconds + 1);
     }, 1000);
 
     return () => {
@@ -115,11 +119,13 @@ export const useBreathing = (config: BreathingConfig) => {
     };
   }, [exerciseState, elapsedSeconds, totalSeconds]);
 
-  const start = () => {
+  const start = useCallback(() => {
     setExerciseState('breathing');
     setCurrentBreathingPatternIndex(0);
+    setCycleCount(0);
     setElapsedSeconds(0);
-  };
+  }, []);
+
   return {
     exerciseState,
     breathingPhase: ['holdAfterInhale', 'holdAfterExhale'].includes(
