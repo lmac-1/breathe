@@ -11,10 +11,7 @@ export function ResonantBreathing() {
     start,
     elapsedSeconds,
     breathingPhase,
-    totalSeconds,
     breathingPhaseDuration,
-    totalCycles,
-    cycleCount,
   } = useBreathing({ type: 'resonant', minutes });
 
   if (exerciseState === 'idle') {
@@ -31,10 +28,6 @@ export function ResonantBreathing() {
   if (exerciseState === 'finished') return 'finished! how do you feel?';
   return (
     <div className="mt-3">
-      <p>{totalSeconds}</p>
-      <p>
-        {cycleCount} of {totalCycles}
-      </p>
       <p className="text-gray-500 text-xs font-mono">{elapsedSeconds}</p>
       <h1 className="text-2xl font-semibold">{breathingPhase}</h1>
       <BreathingAnimation
