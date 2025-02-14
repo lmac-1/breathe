@@ -34,7 +34,7 @@ export const BreathingConfig = ({
       <Card className="space-y-8">
         {type === 'calm' && (
           <div>
-            <Label label="Length of exercise:" icon={Clock} />
+            <Label tight label="Length of exercise:" icon={Clock} />
             <p className="text-navy/80 text-sm">
               5 cycles (1 minute 35 seconds)
             </p>
