@@ -35,7 +35,7 @@ export const Button = ({
       href={href}
       onClick={onClick}
       className={cn(
-        'bg-blue-200 text-blue-900 px-4 py-2 rounded-md hover:text-blue-800 hover:bg-blue-300 transition-colors',
+        'bg-navy/80 text-cream px-4 focus:ring ring-navy/30 outline-none py-2 rounded-md hover:bg-navy/85 transition-colors',
         className
       )}
       disabled={disabled}

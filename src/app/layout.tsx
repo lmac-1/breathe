@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `py-10 px-4 sm:px-10 antialiased bg-[#F5F1E8] sm:max-w-md md:max-w-2xl mx-auto`,
+          `py-10 px-4 sm:px-10 antialiased bg-cream sm:max-w-md md:max-w-2xl mx-auto`,
           roboto.className
         )}
       >

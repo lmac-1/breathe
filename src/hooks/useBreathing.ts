@@ -6,6 +6,7 @@ const DEFAULT_TOTAL_MINUTES = 5;
 const CALM_TOTAL_CYCLES = 5;
 const EVEN_DEFAULT_BREATH_PHASE = 5;
 const BOX_DEFAULT_BREATH_PHASE = 4;
+export const RESONANT_BREATH_PHASE = 5.5;
 
 export const useBreathing = (config: BreathingConfig) => {
   const [exerciseState, setExerciseState] = useState<ExerciseState>('idle');
@@ -21,8 +22,8 @@ export const useBreathing = (config: BreathingConfig) => {
     switch (config.type) {
       case 'resonant':
         return [
-          { phase: 'inhale', durationMs: 5500 },
-          { phase: 'exhale', durationMs: 5500 },
+          { phase: 'inhale', durationMs: RESONANT_BREATH_PHASE * 100 },
+          { phase: 'exhale', durationMs: RESONANT_BREATH_PHASE * 100 },
         ];
       case 'box': {
         const lengthOfBreathPhase =

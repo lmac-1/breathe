@@ -12,6 +12,7 @@ export default {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         navy: '#1B365D',
+        cream: '#F5F1E8',
       },
     },
   },

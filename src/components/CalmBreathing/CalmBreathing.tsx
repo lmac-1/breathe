@@ -1,7 +1,8 @@
 'use client';
-import { Button } from '../ui/Button';
+
 import { BreathingAnimation } from '../BreathingAnimation';
 import { useBreathing } from '@/hooks/useBreathing';
+import { BreathingConfig } from '../BreathingConfig';
 
 export const CalmBreathing = () => {
   const {
@@ -14,14 +15,7 @@ export const CalmBreathing = () => {
     elapsedSeconds,
   } = useBreathing({ type: 'calm' });
   if (exerciseState === 'idle') {
-    return (
-      <div>
-        <p>a special breathing technique aimed to calm you down</p>
-        <Button className="mt-3" onClick={start}>
-          go
-        </Button>
-      </div>
-    );
+    return <BreathingConfig type="calm" start={start} />;
   }
   if (exerciseState === 'finished') return 'finished! how do you feel?';
 
