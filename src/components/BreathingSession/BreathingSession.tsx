@@ -27,7 +27,7 @@ export const BreathingSession = ({
   );
 
   return (
-    <div className="flex py-10 flex-col min-h-screen items-center gap-4">
+    <div className="flex py-10 flex-col min-h-dvh items-center gap-4">
       <ProgressCircle
         progress={progress}
         centerText={secondsDisplay}
