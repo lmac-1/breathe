@@ -22,8 +22,8 @@ export const useBreathing = (config: BreathingConfig) => {
     switch (config.type) {
       case 'resonant':
         return [
-          { phase: 'inhale', durationMs: RESONANT_BREATH_PHASE * 100 },
-          { phase: 'exhale', durationMs: RESONANT_BREATH_PHASE * 100 },
+          { phase: 'inhale', durationMs: RESONANT_BREATH_PHASE * 1000 },
+          { phase: 'exhale', durationMs: RESONANT_BREATH_PHASE * 1000 },
         ];
       case 'box': {
         const lengthOfBreathPhase =
