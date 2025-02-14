@@ -52,14 +52,19 @@ export const BreathingAnimation = ({
   }, [breathingPhase, breathCycleTime, mode]);
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn('relative flex items-center justify-center', className)}>
+      {/* Fixed Text */}
+      <span className="absolute text-navy text-2xl font-light">
+        {breathingPhase}
+      </span>
+      {/* breathing circle */}
       <div
-        className={`w-48 h-48 md:w-64 md:h-64 rounded-full 
-      ${
-        breathingPhase === 'hold'
-          ? 'bg-[#6B7280]/40 shadow-[0_0_40px_rgba(107,114,128,0.4)]'
-          : 'bg-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.4)]'
-      }`}
+        className={cn(
+          'w-48 h-48 md:w-64 md:h-64 rounded-full',
+          breathingPhase === 'hold'
+            ? 'bg-[#6B7280]/40 shadow-[0_0_40px_rgba(107,114,128,0.4)]'
+            : 'bg-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.4)]'
+        )}
         style={{
           transform: `scale(${bubbleSize})`,
           transition:

@@ -27,22 +27,18 @@ export const BreathingSession = ({
   );
 
   return (
-    <div className="flex py-10 flex-col min-h-dvh items-center gap-4">
+    <div className="flex py-10 flex-col min-h-dvh items-center gap-4 relative">
       <ProgressCircle
         progress={progress}
         centerText={secondsDisplay}
-        className=""
+        className="absolute"
       />
       <BreathingAnimation
         breathCycleTime={breathCycleTime}
         breathingPhase={breathingPhase}
         mode={mode}
-        className="grow flex flex-col justify-center"
+        className="flex grow flex-col justify-center"
       />
-
-      <h2 className="text-3xl h-20 font-light text-navy flex flex-col justify-center ">
-        {breathingPhase}
-      </h2>
     </div>
   );
 };
