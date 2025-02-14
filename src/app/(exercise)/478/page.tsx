@@ -1,14 +1,13 @@
 'use client';
 
-import { BreathingAnimation } from '@/components/BreathingAnimation';
 import { BreathingConfig } from '@/components/BreathingConfig';
+import { BreathingSession } from '@/components/BreathingSession';
 import { useBreathing } from '@/hooks/useBreathing';
 
 export default function Page() {
   const {
     exerciseState,
-    cycleCount,
-    totalCycles,
+    totalSeconds,
     start,
     breathingPhase,
     breathingPhaseDuration,
@@ -20,17 +19,12 @@ export default function Page() {
   if (exerciseState === 'finished') return 'finished! how do you feel?';
 
   return (
-    <div className="mt-3">
-      <p className="text-gray-500 text-xs font-mono">
-        cycle {cycleCount + 1} of {totalCycles}
-      </p>
-      <p className="text-gray-500 text-xs font-mono">{elapsedSeconds}</p>
-      <h1 className="text-2xl font-semibold">{breathingPhase}</h1>
-      <BreathingAnimation
-        breathCycleTime={breathingPhaseDuration}
-        breathingPhase={breathingPhase}
-        mode={exerciseState}
-      />
-    </div>
+    <BreathingSession
+      mode={exerciseState}
+      breathCycleTime={breathingPhaseDuration}
+      breathingPhase={breathingPhase}
+      elapsedSeconds={elapsedSeconds}
+      totalSeconds={totalSeconds}
+    />
   );
 }

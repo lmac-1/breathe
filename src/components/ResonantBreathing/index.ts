@@ -1,1 +1,0 @@
-export { ResonantBreathing } from './ResonantBreathing';

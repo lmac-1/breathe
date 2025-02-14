@@ -49,7 +49,7 @@ const exercises = [
 export default function Home() {
   //B7C4B5
   return (
-    <div>
+    <div className="py-10">
       <div className="mb-8">
         <h1 className="text-4xl font-light text-navy mb-2">breathe</h1>
         <p className="text-lg text-navy/80">

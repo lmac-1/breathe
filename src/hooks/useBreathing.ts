@@ -138,7 +138,7 @@ export const useBreathing = (config: BreathingConfig) => {
     totalCycles,
     start,
     breathingPhaseDuration: currentPhase.durationMs,
-    elapsedSeconds: convertSecondsToMinutesSecondDisplay(elapsedSeconds),
+    elapsedSeconds,
     totalSeconds,
   };
 };

@@ -29,7 +29,7 @@ export const BreathingConfig = ({
   const { title, description, max } = CONFIG_OPTIONS[type];
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto py-10">
       <Header title={title} description={description} />
       <Card className="space-y-8">
         {type === 'calm' && (
