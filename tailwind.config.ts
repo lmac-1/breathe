@@ -14,6 +14,14 @@ export default {
         navy: '#1B365D',
         cream: '#F5F1E8',
       },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 2s linear infinite',
+      },
     },
   },
   plugins: [],
