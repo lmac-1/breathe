@@ -2,7 +2,10 @@
 
 import { BreathingConfig } from '@/components/BreathingConfig';
 import { BreathingSession } from '@/components/BreathingSession';
+import { Finish } from '@/components/Finish';
 import { useBreathing } from '@/hooks/useBreathing';
+
+const BREATHING_TYPE = 'calm';
 
 export default function Page() {
   const {
@@ -12,11 +15,12 @@ export default function Page() {
     breathingPhase,
     breathingPhaseDuration,
     elapsedSeconds,
-  } = useBreathing({ type: 'calm' });
+  } = useBreathing({ type: BREATHING_TYPE });
   if (exerciseState === 'idle') {
-    return <BreathingConfig type="calm" start={start} />;
+    return <BreathingConfig type={BREATHING_TYPE} start={start} />;
   }
-  if (exerciseState === 'finished') return 'finished! how do you feel?';
+  if (exerciseState === 'finished')
+    return <Finish totalSeconds={totalSeconds} type={BREATHING_TYPE} />;
 
   return (
     <BreathingSession

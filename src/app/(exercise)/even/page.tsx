@@ -4,6 +4,9 @@ import { useBreathing } from '@/hooks/useBreathing';
 import { useState } from 'react';
 import { BreathingConfig } from '@/components/BreathingConfig';
 import { BreathingSession } from '@/components/BreathingSession';
+import { Finish } from '@/components/Finish';
+
+const BREATHING_TYPE = 'even';
 
 export default function Page() {
   const [minutes, setMinutes] = useState(5);
@@ -15,12 +18,12 @@ export default function Page() {
     breathingPhaseDuration,
     elapsedSeconds,
     totalSeconds,
-  } = useBreathing({ type: 'even', minutes, lengthOfBreathPhase });
+  } = useBreathing({ type: BREATHING_TYPE, minutes, lengthOfBreathPhase });
 
   if (exerciseState === 'idle') {
     return (
       <BreathingConfig
-        type="even"
+        type={BREATHING_TYPE}
         start={start}
         minutes={minutes}
         setMinutes={setMinutes}
@@ -30,7 +33,9 @@ export default function Page() {
     );
   }
 
-  if (exerciseState === 'finished') return 'finished! how do you feel?';
+  if (exerciseState === 'finished')
+    return <Finish type={BREATHING_TYPE} totalSeconds={totalSeconds} />;
+
   return (
     <BreathingSession
       breathCycleTime={breathingPhaseDuration}

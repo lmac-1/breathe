@@ -3,6 +3,9 @@ import { useBreathing } from '@/hooks/useBreathing';
 import { useState } from 'react';
 import { BreathingConfig } from '@/components/BreathingConfig';
 import { BreathingSession } from '@/components/BreathingSession';
+import { Finish } from '@/components/Finish';
+
+const BREATHING_TYPE = 'box';
 
 export default function Page() {
   const [minutes, setMinutes] = useState(5);
@@ -15,7 +18,7 @@ export default function Page() {
     elapsedSeconds,
     totalSeconds,
   } = useBreathing({
-    type: 'box',
+    type: BREATHING_TYPE,
     minutes,
     lengthOfBreathPhase,
   });
@@ -23,7 +26,7 @@ export default function Page() {
   if (exerciseState === 'idle') {
     return (
       <BreathingConfig
-        type="box"
+        type={BREATHING_TYPE}
         start={start}
         minutes={minutes}
         setMinutes={setMinutes}
@@ -32,7 +35,8 @@ export default function Page() {
       />
     );
   }
-  if (exerciseState === 'finished') return 'finished! how do you feel?';
+  if (exerciseState === 'finished')
+    return <Finish totalSeconds={totalSeconds} type={BREATHING_TYPE} />;
 
   return (
     <BreathingSession
