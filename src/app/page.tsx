@@ -1,3 +1,4 @@
+import { cn } from '@/utils';
 import {
   Moon,
   ChevronRight,
@@ -43,6 +44,7 @@ const exercises = [
     perfect: 'Calming your nervous system',
     icon: Brain,
     href: '/',
+    comingSoon: true,
   },
 ];
 
@@ -63,8 +65,16 @@ export default function Home() {
             <Link
               href={exercise.href}
               key={index}
-              className="group flex flex-col hover:shadow-lg transition-shadow duration-200 cursor-pointer bg-white/50 backdrop-blur-sm rounded-xl p-6"
+              className={cn(
+                'group flex flex-col hover:shadow-lg transition-shadow duration-200 cursor-pointer bg-white/50 backdrop-blur-sm rounded-xl p-6',
+                exercise.comingSoon && 'pointer-events-none relative pt-8'
+              )}
             >
+              {exercise.comingSoon && (
+                <div className="absolute bg-green text-xs bg-navy/50 text-white right-0 top-0 px-3 py-1 rounded-tr-xl rounded-bl-xl">
+                  coming soon
+                </div>
+              )}
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
