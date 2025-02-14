@@ -13,11 +13,13 @@ export const BreathingAnimation = ({
   mode: ExerciseState;
 }) => {
   const [animationScale, setAnimationScale] = useState(0.5);
-
   useEffect(() => {
     if (mode !== 'breathing') return;
     if (breathingPhase === 'exhale') setAnimationScale(0.5);
-    if (breathingPhase === 'inhale') setAnimationScale(1);
+    if (breathingPhase === 'inhale') {
+      setAnimationScale(0.5); // Force small start
+      requestAnimationFrame(() => setAnimationScale(1));
+    }
   }, [breathingPhase, mode]);
 
   return (
