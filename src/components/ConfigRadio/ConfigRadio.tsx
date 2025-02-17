@@ -28,7 +28,7 @@ export const ConfigRadio = ({
           <div key={optionValue} className="flex-1">
             <input
               type="radio"
-              className="appearance-none opacity-0 peer"
+              className="appearance-none w-0 h-0 opacity-0 peer"
               name={name}
               id={`${name}-${optionValue}`}
               value={optionValue}
