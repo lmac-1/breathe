@@ -2,12 +2,15 @@
 import { useEffect, useState } from 'react';
 import { cn } from '@/utils';
 import { ExerciseState } from '@/types';
+import { ProgressCircle } from '../ProgressCircle';
 
 type Props = {
   breathCycleTime: number;
   breathingPhase: string;
   mode: ExerciseState;
   className?: string;
+  progress: number;
+  currentSeconds: string;
 };
 
 export const BreathingAnimation = ({
@@ -15,8 +18,11 @@ export const BreathingAnimation = ({
   breathingPhase,
   mode,
   className,
+  progress,
+  currentSeconds,
 }: Props) => {
   const [bubbleSize, setBubbleSize] = useState(0.5);
+
   useEffect(() => {
     if (mode !== 'breathing') return;
     let startTime: number | null = null;
@@ -53,14 +59,18 @@ export const BreathingAnimation = ({
 
   return (
     <div className={cn('relative flex items-center justify-center', className)}>
-      {/* Fixed Text */}
-      <span className="absolute text-navy text-2xl font-light">
+      {/* Fixed Text and seconds display */}
+      <p className="absolute text-navy text-2xl font-light">
         {breathingPhase}
-      </span>
+        <span className="block text-navy text-center font-semibold text-xs font-mono">
+          {currentSeconds}
+        </span>
+      </p>
+      <ProgressCircle progress={progress} className="absolute" />
       {/* breathing circle */}
       <div
         className={cn(
-          'w-48 h-48 md:w-64 md:h-64 rounded-full',
+          'w-48 h-48 md:w-64 md:h-64 rounded-full relative',
           breathingPhase === 'hold'
             ? 'bg-[#6B7280]/40 shadow-[0_0_40px_rgba(107,114,128,0.4)]'
             : 'bg-blue-500/40 shadow-[0_0_40px_rgba(59,130,246,0.4)]'

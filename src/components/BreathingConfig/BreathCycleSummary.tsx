@@ -29,7 +29,7 @@ export const BreathCycleSummary = ({ type, lengthOfBreathPhase }: Props) => {
 
   return (
     <div>
-      <Label icon={Atom} label="Breath exercise:" tight />
+      <Label icon={Atom} label="Breathing exercise:" tight />
       <p className="text-navy/80 text-sm">{content}</p>
     </div>
   );

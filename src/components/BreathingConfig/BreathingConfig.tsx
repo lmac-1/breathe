@@ -73,6 +73,7 @@ export const BreathingConfig = ({
           type={type}
           lengthOfBreathPhase={lengthOfBreathPhase}
         />
+        {/* Guided audio switch */}
         <div className="flex justify-between">
           <Label id="narration" label="Guided audio" icon={AudioLines} />
           <Switch
@@ -95,7 +96,7 @@ export const BreathingConfig = ({
           onClick={start}
           className="w-full text-lg flex gap-2 items-center justify-center mt-4"
         >
-          Start breathing
+          Begin
         </Button>
       </Card>
     </div>

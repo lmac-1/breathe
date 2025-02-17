@@ -21,7 +21,7 @@ export const BreathLengthConfig = ({
       <div className="flex gap-2 text-navy">
         <Label
           icon={type === 'box' ? Box : Wind}
-          label={type === 'box' ? 'Box length' : 'Length of inhale/exhale:'}
+          label={type === 'box' ? 'Box length:' : 'Length of inhale/exhale:'}
         />
         <span className="font-normal">{lengthOfBreathPhase} seconds</span>
       </div>

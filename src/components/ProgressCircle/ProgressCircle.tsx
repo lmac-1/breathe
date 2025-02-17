@@ -1,5 +1,6 @@
 import { cn } from '@/utils';
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 
 type Props = {
   progress: number;
@@ -7,37 +8,45 @@ type Props = {
   className?: string;
 };
 
-export const ProgressCircle = ({ progress, centerText, className }: Props) => {
+export const ProgressCircle = ({ progress, className, centerText }: Props) => {
+  const strokeWidth = 1;
+  const radius = 50 - strokeWidth / 2;
+  const circumference = useMemo(() => 2 * Math.PI * radius, [radius]);
   return (
     <div className={cn('flex flex-col items-center', className)}>
-      <div className="relative w-20 h-20">
-        <svg className="w-full h-full transform -rotate-90">
+      <div className="relative w-48 h-48 md:w-64 md:h-64">
+        <svg
+          viewBox="0 0 100 100"
+          className="w-full h-full transform -rotate-90"
+        >
           <circle
-            cx="40"
-            cy="40"
-            r="36"
+            cx="50"
+            cy="50"
+            r={radius}
             className="stroke-navy/10"
-            strokeWidth="2"
+            strokeWidth={strokeWidth}
             fill="none"
           />
           <motion.circle
-            cx="40"
-            cy="40"
-            r="36"
+            cx="50"
+            cy="50"
+            r={radius}
             className="stroke-navy"
-            strokeWidth="2"
+            strokeWidth={strokeWidth}
             fill="none"
-            strokeDasharray={`${2 * Math.PI * 36}`}
-            initial={{ strokeDashoffset: 2 * Math.PI * 36 }}
+            strokeDasharray={circumference}
+            initial={{ strokeDashoffset: circumference }}
             animate={{
-              strokeDashoffset: 2 * Math.PI * 36 * (1 - progress / 100),
+              strokeDashoffset: circumference * (1 - progress / 100),
             }}
             transition={{ duration: 0.5 }}
           />
         </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-navy text-sm font-mono">{centerText}</span>
-        </div>
+        {centerText && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-navy text-sm font-mono">{centerText}</span>
+          </div>
+        )}
       </div>
     </div>
   );

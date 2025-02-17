@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-type Props = { title: string; description: string };
+type Props = { title: string; description?: string };
 
 export const Header = ({ title, description }: Props) => {
   return (
@@ -15,7 +15,7 @@ export const Header = ({ title, description }: Props) => {
         </Link>
         <h1 className="text-4xl font-light text-navy">{title}</h1>
       </div>
-      <p className="text-lg text-navy/80">{description}</p>
+      {description && <p className="text-lg text-navy/80">{description}</p>}
     </div>
   );
 };
