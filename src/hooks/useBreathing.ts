@@ -1,6 +1,6 @@
-import { convertSecondsToMinutesSecondDisplay } from '@/helperFunctions';
 import { BreathingConfig, ExerciseState, PhaseConfig } from '@/types';
 import { useCallback, useEffect, useRef, useMemo, useState } from 'react';
+import useSound from 'use-sound';
 
 const DEFAULT_TOTAL_MINUTES = 5;
 const CALM_TOTAL_CYCLES = 5;
@@ -14,6 +14,13 @@ export const useBreathing = (config: BreathingConfig) => {
     useState(0);
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [play] = useSound('/sounds/breathwork.mp3', {
+    sprite: {
+      inhale: [0, 977],
+      hold: [1000, 754],
+      exhale: [2000, 867],
+    },
+  });
 
   const breathingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const secondsIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -74,7 +81,11 @@ export const useBreathing = (config: BreathingConfig) => {
 
   useEffect(() => {
     if (exerciseState !== 'breathing') return;
-
+    if (currentPhase.phase === 'inhale') play({ id: 'inhale' });
+    if (['holdAfterExhale', 'holdAfterInhale'].includes(currentPhase.phase)) {
+      play({ id: 'hold' });
+    }
+    if (currentPhase.phase === 'exhale') play({ id: 'exhale' });
     breathingIntervalRef.current = setInterval(() => {
       // Calculate next values first so that it works correctly on strict mode
       const nextIndex =
