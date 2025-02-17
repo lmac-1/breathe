@@ -35,7 +35,7 @@ export const Slider = ({
       <SliderPrimitive.Thumb
         className={cn(
           'block h-5 w-5 rounded-full bg-navy dark:bg-white',
-          'focus:outline-hidden focus-visible:ring-3 focus-visible:ring-purple-500 focus-visible:ring-opacity-75'
+          'focus:outline-none focus:ring focus-visible:ring-3 focus-visible:ring-blue-500/75'
         )}
       />
     </SliderPrimitive.Root>

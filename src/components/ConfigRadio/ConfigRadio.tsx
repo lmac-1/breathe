@@ -38,7 +38,7 @@ export const ConfigRadio = ({
               }}
             />
             <label
-              className="peer-checked:bg-navy/80 peer-checked:peer-hover:bg-navy/85 cursor-pointer h-full text-center inline-block text-navy w-full ring-navy/30 peer-checked:border-transparent border-navy/80 peer-focus:ring peer-checked:text-cream px-3 py-1 border rounded-lg shrink-0"
+              className="peer-checked:bg-navy/80 peer-checked:peer-hover:bg-navy/85 cursor-pointer h-full text-center inline-block text-navy w-full ring-blue-500/75 peer-checked:border-transparent border-navy/80 peer-focus:ring peer-checked:text-cream px-3 py-1 border rounded-lg shrink-0"
               htmlFor={`${name}-${optionValue}`}
             >
               {label || optionValue}

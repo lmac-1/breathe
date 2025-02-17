@@ -18,7 +18,7 @@ export const Switch = ({ className, checked, onChange, labelId }: Props) => {
       data-state={checked ? 'checked' : 'unchecked'}
       className={cn(
         'relative inline-flex h-6 w-[44px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out',
-        'focus:outline-none focus-visible:ring-3 focus-visible:ring focus:ring-blue-500 focus-visible:ring-opacity-75',
+        'focus:outline-none focus-visible:ring-3 focus-visible:ring focus:ring-blue-500/75',
         'bg-gray-200 dark:bg-gray-800 data-[state=checked]:bg-green-600',
         className
       )}
