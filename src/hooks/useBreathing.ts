@@ -14,6 +14,7 @@ export const useBreathing = (config: BreathingConfig) => {
     useState(0);
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [isNarrated, setIsNarrated] = useState(true);
   const [play] = useSound('/sounds/breathwork.mp3', {
     sprite: {
       inhale: [0, 977],
@@ -81,11 +82,14 @@ export const useBreathing = (config: BreathingConfig) => {
 
   useEffect(() => {
     if (exerciseState !== 'breathing') return;
-    if (currentPhase.phase === 'inhale') play({ id: 'inhale' });
-    if (['holdAfterExhale', 'holdAfterInhale'].includes(currentPhase.phase)) {
-      play({ id: 'hold' });
+    // Sound effects
+    if (isNarrated) {
+      if (currentPhase.phase === 'inhale') play({ id: 'inhale' });
+      if (['holdAfterExhale', 'holdAfterInhale'].includes(currentPhase.phase)) {
+        play({ id: 'hold' });
+      }
+      if (currentPhase.phase === 'exhale') play({ id: 'exhale' });
     }
-    if (currentPhase.phase === 'exhale') play({ id: 'exhale' });
     breathingIntervalRef.current = setInterval(() => {
       // Calculate next values first so that it works correctly on strict mode
       const nextIndex =
@@ -138,6 +142,10 @@ export const useBreathing = (config: BreathingConfig) => {
     setElapsedSeconds(0);
   }, []);
 
+  const toggleNarrated = useCallback(() => {
+    setIsNarrated((prev) => !prev);
+  }, []);
+
   return {
     exerciseState,
     breathingPhase: ['holdAfterInhale', 'holdAfterExhale'].includes(
@@ -151,5 +159,7 @@ export const useBreathing = (config: BreathingConfig) => {
     breathingPhaseDuration: currentPhase.durationMs,
     elapsedSeconds,
     totalSeconds,
+    isNarrated,
+    toggleNarrated,
   };
 };

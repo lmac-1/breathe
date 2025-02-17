@@ -17,6 +17,8 @@ export default function Page() {
     breathingPhase,
     elapsedSeconds,
     totalSeconds,
+    isNarrated,
+    toggleNarrated,
   } = useBreathing({
     type: BREATHING_TYPE,
     minutes,
@@ -26,6 +28,8 @@ export default function Page() {
   if (exerciseState === 'idle') {
     return (
       <BreathingConfig
+        isNarrated={isNarrated}
+        toggleNarrated={toggleNarrated}
         type={BREATHING_TYPE}
         start={start}
         minutes={minutes}

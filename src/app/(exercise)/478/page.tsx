@@ -15,9 +15,18 @@ export default function Page() {
     breathingPhase,
     breathingPhaseDuration,
     elapsedSeconds,
+    isNarrated,
+    toggleNarrated,
   } = useBreathing({ type: BREATHING_TYPE });
   if (exerciseState === 'idle') {
-    return <BreathingConfig type={BREATHING_TYPE} start={start} />;
+    return (
+      <BreathingConfig
+        isNarrated={isNarrated}
+        toggleNarrated={toggleNarrated}
+        type={BREATHING_TYPE}
+        start={start}
+      />
+    );
   }
   if (exerciseState === 'finished')
     return <Finish totalSeconds={totalSeconds} type={BREATHING_TYPE} />;

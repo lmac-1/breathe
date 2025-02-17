@@ -1,13 +1,14 @@
 import { BreathingExercise } from '@/types';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { Clock } from 'lucide-react';
+import { AudioLines, Clock } from 'lucide-react';
 import { ConfigRadio } from '../ConfigRadio';
 import { Label } from '../ui/Label';
 import { CONFIG_OPTIONS } from './config';
 import { Header } from './Header';
 import { BreathLengthConfig } from './BreathLengthConfig';
 import { BreathCycleSummary } from './BreathCycleSummary';
+import { Switch } from '../ui/Switch';
 
 type Props = {
   type: BreathingExercise;
@@ -16,6 +17,8 @@ type Props = {
   setMinutes?: (minutes: number) => void;
   lengthOfBreathPhase?: number;
   setLengthOfBreathPhase?: (length: number) => void;
+  isNarrated: boolean;
+  toggleNarrated: () => void;
 };
 
 export const BreathingConfig = ({
@@ -25,6 +28,8 @@ export const BreathingConfig = ({
   setMinutes,
   lengthOfBreathPhase,
   setLengthOfBreathPhase,
+  isNarrated,
+  toggleNarrated,
 }: Props) => {
   const { title, description, max } = CONFIG_OPTIONS[type];
 
@@ -68,6 +73,14 @@ export const BreathingConfig = ({
           type={type}
           lengthOfBreathPhase={lengthOfBreathPhase}
         />
+        <div className="flex justify-between">
+          <Label id="narration" label="Guided audio" icon={AudioLines} />
+          <Switch
+            labelId="narration"
+            checked={isNarrated}
+            onChange={toggleNarrated}
+          />
+        </div>
 
         {/* Preview section */}
         {/*  <div className="bg-navy/5 rounded-lg p-4">
