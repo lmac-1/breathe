@@ -14,7 +14,7 @@ export const useBreathing = (config: BreathingConfig) => {
     useState(0);
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
-  const [isNarrated, setIsNarrated] = useState(true);
+  const [isNarrated, setIsNarrated] = useState(false);
   const [play] = useSound('/sounds/breathwork.mp3', {
     sprite: {
       inhale: [0, 977],
@@ -146,6 +146,13 @@ export const useBreathing = (config: BreathingConfig) => {
     setIsNarrated((prev) => !prev);
   }, []);
 
+  const cancel = useCallback(() => {
+    setExerciseState('idle');
+    setCurrentBreathingPatternIndex(0);
+    setCycleCount(0);
+    setElapsedSeconds(0);
+  }, []);
+
   return {
     exerciseState,
     breathingPhase: ['holdAfterInhale', 'holdAfterExhale'].includes(
@@ -156,6 +163,7 @@ export const useBreathing = (config: BreathingConfig) => {
     cycleCount,
     totalCycles,
     start,
+    cancel,
     breathingPhaseDuration: currentPhase.durationMs,
     elapsedSeconds,
     totalSeconds,

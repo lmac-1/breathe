@@ -19,12 +19,12 @@ export default function Page() {
     totalSeconds,
     isNarrated,
     toggleNarrated,
+    cancel,
   } = useBreathing({
     type: BREATHING_TYPE,
     minutes,
     lengthOfBreathPhase,
   });
-
   if (exerciseState === 'idle') {
     return (
       <BreathingConfig
@@ -49,6 +49,7 @@ export default function Page() {
       mode={exerciseState}
       elapsedSeconds={elapsedSeconds}
       totalSeconds={totalSeconds}
+      cancel={cancel}
     />
   );
 }

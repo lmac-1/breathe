@@ -19,6 +19,7 @@ export default function Page() {
     elapsedSeconds,
     totalSeconds,
     isNarrated,
+    cancel,
     toggleNarrated,
   } = useBreathing({ type: BREATHING_TYPE, minutes, lengthOfBreathPhase });
 
@@ -42,6 +43,7 @@ export default function Page() {
 
   return (
     <BreathingSession
+      cancel={cancel}
       breathCycleTime={breathingPhaseDuration}
       breathingPhase={breathingPhase}
       mode={exerciseState}
