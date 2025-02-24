@@ -15,6 +15,7 @@ export const useBreathing = (config: BreathingConfig) => {
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [isNarrated, setIsNarrated] = useState(false);
+
   const [play] = useSound('/sounds/breathwork.mp3', {
     sprite: {
       inhale: [0, 977],
@@ -22,6 +23,7 @@ export const useBreathing = (config: BreathingConfig) => {
       exhale: [2000, 867],
     },
   });
+  const [playFinishedSound] = useSound('/sounds/finished.mp3');
 
   const breathingIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const secondsIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -81,6 +83,7 @@ export const useBreathing = (config: BreathingConfig) => {
   const currentPhase = breathingPattern[currentBreathingPatternIndex];
 
   useEffect(() => {
+    if (exerciseState === 'finished' && isNarrated) playFinishedSound();
     if (exerciseState !== 'breathing') return;
     // Sound effects
     if (isNarrated) {
