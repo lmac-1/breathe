@@ -83,7 +83,7 @@ export const useBreathing = (config: BreathingConfig) => {
   const currentPhase = breathingPattern[currentBreathingPatternIndex];
 
   useEffect(() => {
-    if (exerciseState === 'finished' && isNarrated) playFinishedSound();
+    if (exerciseState === 'finished') playFinishedSound();
     if (exerciseState !== 'breathing') return;
     // Sound effects
     if (isNarrated) {
