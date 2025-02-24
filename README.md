@@ -1,33 +1,54 @@
 # Breathe
 
-This is a simple application to practice breahwork exercises
+## Why I Built This
 
-## Todo
+Since starting freediving, I have discovered the importance and power of breathing exercises. Controlled breathing not only helps with relaxation and focus, but also improves lung capacity and overall wellbeing.
 
-- [x] build first page with buttons for different breathing exercises
-- [x] each button takes user to a breathwork page
-- [x] build basic pages
-  - [x] box breath:
-    - [x] start button to start 5 minute timer
-    - [x] says inhale for 4 seconds, hold 4 seconds, exhale 4 seconds, hold 4 seconds
-    - [x] shows finished screen
-    - [x] show seconds passed on screen, rather than cycles
-    - [x] allow for customisable options for duration and length of box (will add in after)
-  - [x] even breathing:
-    - [x] start button to start 5 minute timer
-    - [x] says inhale 5, exhale 5 (no pause)
-    - [x] shows finished screen
-    - [x] allow for customisable options for duration and length of breath (will add in after)
-  - [x] resonant breathing:
-    - [x] start button to start 1 minute timer (will be 5 minutes later)
-    - [x] says inhale 5.5 seconds, exhale 5.5 seconds
-    - [x] shows finished screen
-    - [x] no customisable options
-  - [x] 4-7-8
-    - [x] start button to start exercise
-    - [x] inhale 4 seconds, hold 7 seconds, exhale 8 seconds. 5 cycles.
-    - [x] shows finished screen
-  - [x] refactor code to all come from hooks
-- [ ] investigate how to use audio files and how to integrate them with the meditation
-- [ ] investigate royalty free music
-- [ ] favicon
+I wanted to create a simple application that would allow me to easily practice different breathing techniques and configure breath lengths to suit my needs.
+
+## About the Project
+
+This is a simple application to practice the following breathwork exercises:
+
+- Resonant breathing – Inhaling 5.5 seconds, exhaling 5.5 seconds
+- Equal breathing – Inhaling and exhaling for the same count with no break
+- Box breathing – Inhaling, holding, exhaling, and holding for the same count
+- 4-7-8 breathing – 5 rounds of inhaling for 4 seconds, holding for 7 seconds, and exhaling for 8 seconds
+
+The application also has the following configurable settings:
+
+- Length of session (all breathing exercises apart from 4-7-8 breathing)
+- Length of breath phase (box breathing and equal breathing)
+- Guided audio (on or off)
+
+## How to run the project
+
+First clone the repository and navigate to the project folder.
+
+Next, run:
+
+`npm install`
+
+Start the development server:
+
+`npm run dev`
+
+This will start the app, usually at https://localhost:3000
+
+## Tech stack
+
+- React + Next.js: UI and Routing
+- [`use-sound`](https://github.com/joshwcomeau/use-sound): Audio playback
+- TailwindCSS: Styling
+
+## Features
+
+- Guided breathwork with breathing animation
+- Optional narration
+- Customisable options for different breathing exercises
+
+Please note that on mobile your phone must be on "loud" in order to hear the narration.
+
+## Deployment
+
+This app is currently live at http://breathe-lime.vercel.app/
