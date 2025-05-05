@@ -1,6 +1,7 @@
 import { BreathingConfig, ExerciseState, PhaseConfig } from '@/types';
 import { useCallback, useEffect, useRef, useMemo, useState } from 'react';
 import useSound from 'use-sound';
+import { useWakeLock } from './useWakeLock';
 
 const DEFAULT_TOTAL_MINUTES = 5;
 const CALM_TOTAL_CYCLES = 5;
@@ -15,6 +16,13 @@ export const useBreathing = (config: BreathingConfig) => {
   const [cycleCount, setCycleCount] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [isNarrated, setIsNarrated] = useState(false);
+
+  const {
+    isSupported: isWakeLockSupported,
+    isActive: isWakeLockActive,
+    request: requestWakeLock,
+    release: releaseWakeLock,
+  } = useWakeLock();
 
   const [play] = useSound('/sounds/breathwork.mp3', {
     sprite: {
